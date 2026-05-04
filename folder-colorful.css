@@ -1,0 +1,1948 @@
+/* @settings
+name: Folder Colorful
+id: folder-colorful
+settings:
+-
+  id: bt-toggle-colorful-folder
+  title: Toggle colorful folders
+  type: class-toggle
+  default: true
+-
+  id: folder-style-change-options-colorful
+  title: Select folder colorful mode
+  type: class-select
+  allowEmpty: false
+  default: folder-style-change-options-colorful-border
+  options:
+    -
+      label: Default non-colorful
+      value: folder-style-change-options-colorful-default
+    -
+      label: folder colorful  with  "0-9" or  "A-Z"
+      value: folder-style-change-options-colorful
+    -
+      label: folder colorful by order
+      value: folder-style-change-options-colorful-order
+    -
+      label: folder title colorful
+      value: folder-style-change-options-colorful-title
+    -
+      label: Tab-liked
+      value: folder-style-change-options-colorful-tab-liked
+    -
+      label: Border
+      value: folder-style-change-options-colorful-border
+-
+  id: folder-style-change-options-colorful-subfolder
+  title: Folder color palette
+  type: class-select
+  allowEmpty: false
+  default: folder-colorful-six
+  options:
+    -
+      label: Style 1 (high transparency)
+      value: folder-colorful-one
+    -
+      label: Style 2 (low transparency)
+      value: folder-colorful-two
+    -
+      label: Style 3
+      value: folder-colorful-three
+    -
+      label: Style 4
+      value: folder-colorful-four
+    -
+      label: Style 5
+      value: folder-colorful-five
+    -
+      label: Style 6
+      value: folder-colorful-six
+    -
+      label: Custom
+      value: folder-colorful-custom
+-
+  id: folder-colorful-custom-color
+  title: Custom color of folder
+  type: variable-themed-color
+  opacity: true
+  format: hex
+  default-light: '#'
+  default-dark: '#'
+-
+  id: file-name-style-option
+  title: File name style
+  type: class-select
+  allowEmpty: false
+  default: file-name-non-wrapped
+  options:
+    -
+      label: Wrapped
+      value: file-name-wrapped
+    -
+      label: Non-wrapped
+      value: file-name-non-wrapped
+    -
+      label: File Name Scrolling When Hovering
+      value: file-name-animation
+-
+  id: remove-file-icons
+  title: Remove file icons
+  description: To remove the icons before .md files
+  type: class-toggle
+  default: false
+-
+  id: text-folder-file-icon
+  title: Custom color of file icon
+  type: variable-themed-color
+  opacity: true
+  format: hex
+  default-light: '#'
+  default-dark: '#'
+-
+  id: folder-icons
+  title: Activate Folder Icons
+  type: class-toggle
+  default: true
+-
+  id: remove-first-folder-icon
+  title: Remove the first-layer folder icons
+  type: class-toggle
+  default: true
+-
+  id: remove-arrow
+  title: Folder Icons w/o arrows (Collapse Indicator)
+  type: class-toggle
+  default: true
+-
+  id: folder-note-underline
+  title: Toggle Folder note underline
+  type: class-toggle
+  default: false
+-
+  id: folder-note-dot
+  title: Toggle Folder note dot
+  type: class-toggle
+  default: false
+*/
+
+/*
+  From THEME.css
+  Coloured Folders for Blue Topaz 0-Z, v0.3 modified from the snippet created by @Lithou
+*/
+:root {
+  --folder-colorful-custom-color: #222;
+  --text-folder-file-icon: #222;
+}
+
+body.theme-light {
+  --folder-colorful-custom-color: #222;
+  --text-folder-file-icon: #222;
+}
+
+body.theme-dark {
+  --folder-colorful-custom-color: #ffffff;
+  --text-folder-file-icon: #ffffff;
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful, .folder-style-change-options-colorful-order).theme-dark {
+  --FoldText: #cbcbcb;
+}
+
+/* color scheme-1, high transparency */
+body.bt-toggle-colorful-folder.folder-colorful-one.theme-dark {
+  --Fold0: #ff40403d;
+  --Fold1: #f31f7448;
+  --Fold2: #be25ff49;
+  --Fold3: #7337ff67;
+  --Fold4: #2f4bff65;
+  --Fold5: #1372d188;
+  --Fold6: #0289d17e;
+  --Fold7: #0096a77e;
+  --Fold8: #00796b94;
+  --Fold9: #388e3c80;
+  --FoldA: #689f3883;
+  --FoldB: #afb42b81;
+  --FoldC: #f9ab255d;
+  --FoldD: #ff910063;
+  --FoldE: #ef6c0067;
+  --FoldF: #d8421559;
+  --FoldG: #1e5f74ca;
+  --FoldH: #c53571b9;
+  --FoldI: #4b5d67d0;
+  --FoldJ: #295d6d7a;
+  --FoldK: #5734d691;
+  --FoldL: #4c4c6dda;
+  --FoldM: #ad62aab9;
+  --FoldN: #c490e4a1;
+  --FoldO: #b42a3d8e;
+  --FoldP: #af173880;
+  --FoldQ: #4c25a0b2;
+  --FoldR: #5f84dbc4;
+  --FoldS: #c06c84ce;
+  --FoldT: #684656d5;
+  --FoldU: #797d8581;
+  --FoldV: #556e53e3;
+  --FoldW: #2f5241b2;
+  --FoldX: #834c69ed;
+  --FoldY: #df85c885;
+  --FoldZ: #362222ea;
+}
+
+/* color scheme-2, low transparency */
+body.bt-toggle-colorful-folder.folder-colorful-two.theme-dark {
+  --Fold0: #823131d7;
+  --Fold1: #96174ad7;
+  --Fold2: #731a9ad7;
+  --Fold3: #543796d7;
+  --Fold4: #2b3ba2d7;
+  --Fold5: #185898d7;
+  --Fold6: #1e6b95d7;
+  --Fold7: #187782d7;
+  --Fold8: #0d6a5fd7;
+  --Fold9: #1f7624d7;
+  --FoldA: #2f6007ef;
+  --FoldB: #6c7e12ef;
+  --FoldC: #7b7e0def;
+  --FoldD: #7f6c0cef;
+  --FoldE: #7d550cef;
+  --FoldF: #76350aef;
+  --FoldG: #671c14ef;
+  --FoldH: #710d0def;
+  --FoldI: #7a0d36ef;
+  --FoldJ: #710b52ef;
+  --FoldK: #710e7aef;
+  --FoldL: #621287ef;
+  --FoldM: #470f7bef;
+  --FoldN: #381182ef;
+  --FoldO: #1c1089ef;
+  --FoldP: #192698ef;
+  --FoldQ: #1737a2ef;
+  --FoldR: #0e4295ef;
+  --FoldS: #0f5495ef;
+  --FoldT: #0f5f8eef;
+  --FoldU: #0d687eef;
+  --FoldV: #0a7373ef;
+  --FoldW: #0d6e5def;
+  --FoldX: #0b6542ef;
+  --FoldY: #0a642def;
+  --FoldZ: #105b09ef;
+}
+
+/* color scheme-3 */
+body.bt-toggle-colorful-folder.folder-colorful-three.theme-dark {
+  --Fold0: #002044d7;
+  --Fold1: #042b58d7;
+  --Fold2: #032d5dd7;
+  --Fold3: #032f60d7;
+  --Fold4: #04356ed7;
+  --Fold5: #053c7ad7;
+  --Fold6: #0f4a8ed7;
+  --Fold7: #18559ad7;
+  --Fold8: #1e5fa9d7;
+  --Fold9: #296bb6d7;
+  --FoldA: #003404ef;
+  --FoldB: #014406ef;
+  --FoldC: #004c06ef;
+  --FoldD: #005607ef;
+  --FoldE: #005d08ef;
+  --FoldF: #006c09ef;
+  --FoldG: #007a06ef;
+  --FoldH: #4e3200ef;
+  --FoldI: #5d3c00ef;
+  --FoldJ: #6c4600ef;
+  --FoldK: #784e00ef;
+  --FoldL: #8c5b00ef;
+  --FoldM: #915e00ef;
+  --FoldN: #a06800ef;
+  --FoldO: #5d0000ef;
+  --FoldP: #640000ef;
+  --FoldQ: #780000ef;
+  --FoldR: #870000ef;
+  --FoldS: #930000ef;
+  --FoldT: #a20000ef;
+  --FoldU: #0a0f58ef;
+  --FoldV: #050b64ef;
+  --FoldW: #091075ef;
+  --FoldX: #131a82ef;
+  --FoldY: #1f2791ef;
+  --FoldZ: #2a3296ef;
+}
+
+/* color scheme-4 */
+body.bt-toggle-colorful-folder.folder-colorful-four.theme-dark {
+  --Fold0: #002f65d7;
+  --Fold1: #003675d7;
+  --Fold2: #003d82d7;
+  --Fold3: #004696d7;
+  --Fold4: #0053b1d7;
+  --Fold5: #0657b5d7;
+  --Fold6: #0b66ced7;
+  --Fold7: #156cd0d7;
+  --Fold8: #2278dad7;
+  --Fold9: #2879d6d7;
+  --FoldA: #001e5fef;
+  --FoldB: #002473ef;
+  --FoldC: #002d90ef;
+  --FoldD: #0135a5ef;
+  --FoldE: #073bb6ef;
+  --FoldF: #0d46c2ef;
+  --FoldG: #1253d6ef;
+  --FoldH: #002351ef;
+  --FoldI: #00306eef;
+  --FoldJ: #05336fef;
+  --FoldK: #093c7eef;
+  --FoldL: #0f4489ef;
+  --FoldM: #19529def;
+  --FoldN: #2965b3ef;
+  --FoldO: #003156ef;
+  --FoldP: #003f6fef;
+  --FoldQ: #004b84ef;
+  --FoldR: #005190ef;
+  --FoldS: #07599bef;
+  --FoldT: #1c6db0ef;
+  --FoldU: #003d5aef;
+  --FoldV: #004d71ef;
+  --FoldW: #005c87ef;
+  --FoldX: #066996ef;
+  --FoldY: #1379a9ef;
+  --FoldZ: #1b89bbef;
+}
+
+/* color scheme-5 */
+body.bt-toggle-colorful-folder.folder-colorful-five.theme-dark {
+  --Fold0: #7b7b05d7;
+  --Fold1: #2d7a04d7;
+  --Fold2: #097a4bd7;
+  --Fold3: #09756fd7;
+  --Fold4: #0a6b7ad7;
+  --Fold5: #0b556ed7;
+  --Fold6: #0b426fd7;
+  --Fold7: #0d226ed7;
+  --Fold8: #350e6cd7;
+  --Fold9: #5b0254d7;
+  --FoldA: #350e6cd7;
+  --FoldB: #0d226ed7;
+  --FoldC: #0b426fd7;
+  --FoldD: #0b556ed7;
+  --FoldE: #09756fd7;
+  --FoldF: #097a4bd7;
+  --FoldG: #2d7a04d7;
+  --FoldH: #7b7b05d7;
+  --FoldI: #2d7a04d7;
+  --FoldJ: #097a4bd7;
+  --FoldK: #09756fd7;
+  --FoldL: #0b556ed7;
+  --FoldM: #0b556ed7;
+  --FoldN: #0b426fd7;
+  --FoldO: #0d226ed7;
+  --FoldP: #350e6cd7;
+  --FoldQ: #5b0254d7;
+  --FoldR: #350e6cd7;
+  --FoldS: #0d226ed7;
+  --FoldT: #0b426fd7;
+  --FoldU: #0b556ed7;
+  --FoldV: #0b556ed7;
+  --FoldW: #09756fd7;
+  --FoldX: #097a4bd7;
+  --FoldY: #2d7a04d7;
+  --FoldZ: #7b7b05d7;
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful, .folder-style-change-options-colorful-order).theme-light {
+  --FoldText: #000000;
+}
+
+/* color scheme-1, high transparency */
+body.bt-toggle-colorful-folder.folder-colorful-one.theme-light {
+  --Fold0: #f3bfbf54;
+  --Fold1: #ffbdd769;
+  --Fold2: #ebbcff69;
+  --Fold3: #ccb7ff65;
+  --Fold4: #b1bcff5e;
+  --Fold5: #98c6f45d;
+  --Fold6: #99ceeb5d;
+  --Fold7: #81dee95d;
+  --Fold8: #6ec7bc5b;
+  --Fold9: #8dde9162;
+  --FoldA: #a5dd745e;
+  --FoldB: #c9d96c5e;
+  --FoldC: #dbdd6a65;
+  --FoldD: #e5cb5965;
+  --FoldE: #e6b25365;
+  --FoldF: #e5915965;
+  --FoldG: #df756765;
+  --FoldH: #f46f6f65;
+  --FoldI: #f16fa16e;
+  --FoldJ: #ec6bc66e;
+  --FoldK: #de6ce86e;
+  --FoldL: #be62e96e;
+  --FoldM: #ad6cea6e;
+  --FoldN: #966ce66e;
+  --FoldO: #786be56e;
+  --FoldP: #717ce26e;
+  --FoldQ: #748fe76e;
+  --FoldR: #6f9ee96e;
+  --FoldS: #6fade86e;
+  --FoldT: #68b8e76e;
+  --FoldU: #63c9e36e;
+  --FoldV: #6ed3d36e;
+  --FoldW: #61c0b06e;
+  --FoldX: #4dbc916e;
+  --FoldY: #52bb7b6e;
+  --FoldZ: #5fbb576e;
+}
+
+/* color scheme-2, low transparency */
+body.bt-toggle-colorful-folder.folder-colorful-two.theme-light {
+  --Fold0: #ffe2e2;
+  --Fold1: #ffdee9;
+  --Fold2: #f6e1ff;
+  --Fold3: #e9dfff;
+  --Fold4: #e1e5ff;
+  --Fold5: #d4eaff;
+  --Fold6: #cdedff;
+  --Fold7: #ccf2f7;
+  --Fold8: #d5f8f4;
+  --Fold9: #d8f8da;
+  --FoldA: #ecffdb;
+  --FoldB: #f4fbd2;
+  --FoldC: #f7f8cf;
+  --FoldD: #f7f0cc;
+  --FoldE: #fdeed2;
+  --FoldF: #ffe4d3;
+  --FoldG: #ffdbd6;
+  --FoldH: #ffdfdf;
+  --FoldI: #ffdce9;
+  --FoldJ: #ffdbf4;
+  --FoldK: #fcddff;
+  --FoldL: #f4dbff;
+  --FoldM: #ecd7ff;
+  --FoldN: #e5d7ff;
+  --FoldO: #dad6ff;
+  --FoldP: #d6daff;
+  --FoldQ: #d7e1ff;
+  --FoldR: #d5e5ff;
+  --FoldS: #d3eaff;
+  --FoldT: #d3eeff;
+  --FoldU: #d6f7ff;
+  --FoldV: #d6ffff;
+  --FoldW: #dafff8;
+  --FoldX: #dcfcef;
+  --FoldY: #dcffe9;
+  --FoldZ: #defcdc;
+}
+
+/* color scheme-3 */
+body.bt-toggle-colorful-folder.folder-colorful-three.theme-light {
+  --Fold0: #80dc87ef;
+  --Fold1: #8fe296ef;
+  --Fold2: #9de5a3ef;
+  --Fold3: #b1ebb6ef;
+  --Fold4: #bbebbfef;
+  --Fold5: #c8ebcbef;
+  --Fold6: #d9ecdaef;
+  --FoldG: #50a2ffd7;
+  --FoldF: #60aaffd7;
+  --FoldE: #6eb2ffd7;
+  --FoldD: #76b6ffd7;
+  --FoldC: #89c0ffd7;
+  --FoldB: #93c5ffd7;
+  --FoldA: #aad2ffd7;
+  --Fold9: #bbdbffd7;
+  --Fold8: #c8e2ffd7;
+  --Fold7: #d2e7ffd7;
+  --FoldH: #ffbc40ef;
+  --FoldI: #ffc75fef;
+  --FoldJ: #ffcd71ef;
+  --FoldK: #ffd485ef;
+  --FoldL: #ffe0a6ef;
+  --FoldM: #ffe7bbef;
+  --FoldN: #ffedcbef;
+  --FoldO: #ff7676ef;
+  --FoldP: #ff9494ef;
+  --FoldQ: #ffa1a1ef;
+  --FoldR: #ffb8b8ef;
+  --FoldS: #ffcbcbef;
+  --FoldT: #ffe1e1ef;
+  --FoldU: #a38fffef;
+  --FoldV: #b09fffef;
+  --FoldW: #c2b5ffef;
+  --FoldX: #d2c6ffef;
+  --FoldY: #e0daffef;
+  --FoldZ: #eae4ffef;
+}
+
+/* color scheme-4 */
+body.bt-toggle-colorful-folder.folder-colorful-four.theme-light {
+  --Fold0: #50a2ffd7;
+  --Fold1: #60aaffd7;
+  --Fold2: #6eb2ffd7;
+  --Fold3: #76b6ffd7;
+  --Fold4: #89c0ffd7;
+  --Fold5: #93c5ffd7;
+  --Fold6: #aad2ffd7;
+  --Fold7: #bbdbffd7;
+  --Fold8: #c8e2ffd7;
+  --Fold9: #d2e7ffd7;
+  --FoldA: #709effef;
+  --FoldB: #81a9ffef;
+  --FoldC: #92b5ffef;
+  --FoldD: #a4c1ffef;
+  --FoldE: #b4cbffef;
+  --FoldF: #c3d6ffef;
+  --FoldG: #d4e2ffef;
+  --FoldH: #7ab3ffef;
+  --FoldI: #86bbffef;
+  --FoldJ: #9dc7ffef;
+  --FoldK: #acd0ffef;
+  --FoldL: #b1d3ffef;
+  --FoldM: #c6dfffef;
+  --FoldN: #d1e5ffef;
+  --FoldO: #80c8ffef;
+  --FoldP: #97d2ffef;
+  --FoldQ: #a9daffef;
+  --FoldR: #b7e0ffef;
+  --FoldS: #c8e6ffef;
+  --FoldT: #d9eeffef;
+  --FoldU: #7dd6ffef;
+  --FoldV: #94ddffef;
+  --FoldW: #a4e2ffef;
+  --FoldX: #b5e8ffef;
+  --FoldY: #c5edffef;
+  --FoldZ: #d2f1ffef;
+}
+
+/* color scheme-5 */
+body.bt-toggle-colorful-folder.folder-colorful-five.theme-light {
+  --Fold0: #e4e483d7;
+  --Fold1: #bde7a7d7;
+  --Fold2: #9de2c5d7;
+  --Fold3: #93dad6d7;
+  --Fold4: #9de2ecd7;
+  --Fold5: #8ddcf7d7;
+  --Fold6: #8acaffd7;
+  --Fold7: #aebdf3d7;
+  --Fold8: #cab2ebd7;
+  --Fold9: #e9b1e5d7;
+  --FoldA: #cab2ebd7;
+  --FoldB: #aebdf3d7;
+  --FoldC: #8acaffd7;
+  --FoldD: #9de2ecd7;
+  --FoldE: #93dad6d7;
+  --FoldF: #9de2c5d7;
+  --FoldG: #bde7a7d7;
+  --FoldH: #e4e483d7;
+  --FoldI: #bde7a7d7;
+  --FoldJ: #9de2c5d7;
+  --FoldK: #93dad6d7;
+  --FoldL: #9de2ecd7;
+  --FoldM: #8ddcf7d7;
+  --FoldN: #8acaffd7;
+  --FoldO: #aebdf3d7;
+  --FoldP: #cab2ebd7;
+  --FoldQ: #e9b1e5d7;
+  --FoldR: #cab2ebd7;
+  --FoldS: #aebdf3d7;
+  --FoldT: #8acaffd7;
+  --FoldU: #8ddcf7d7;
+  --FoldV: #9de2ecd7;
+  --FoldW: #93dad6d7;
+  --FoldX: #9de2c5d7;
+  --FoldY: #bde7a7d7;
+  --FoldZ: #e4e483d7;
+}
+
+/* color scheme-custom */
+body.bt-toggle-colorful-folder.folder-colorful-custom:not(.folder-style-change-options-colorful-default) {
+  --Fold0: hue-rotate(350deg);
+  --Fold1: hue-rotate(340deg);
+  --Fold2: hue-rotate(330deg);
+  --Fold3: hue-rotate(320deg);
+  --Fold4: hue-rotate(310deg);
+  --Fold5: hue-rotate(300deg);
+  --Fold6: hue-rotate(290deg);
+  --Fold7: hue-rotate(280deg);
+  --Fold8: hue-rotate(270deg);
+  --Fold9: hue-rotate(260deg);
+  --FoldA: hue-rotate(250deg);
+  --FoldB: hue-rotate(240deg);
+  --FoldC: hue-rotate(230deg);
+  --FoldD: hue-rotate(220deg);
+  --FoldE: hue-rotate(210deg);
+  --FoldF: hue-rotate(200deg);
+  --FoldG: hue-rotate(190deg);
+  --FoldH: hue-rotate(180deg);
+  --FoldJ: hue-rotate(170deg);
+  --FoldK: hue-rotate(160deg);
+  --FoldL: hue-rotate(150deg);
+  --FoldM: hue-rotate(140deg);
+  --FoldN: hue-rotate(130deg);
+  --FoldO: hue-rotate(120deg);
+  --FoldP: hue-rotate(110deg);
+  --FoldQ: hue-rotate(100deg);
+  --FoldR: hue-rotate(90deg);
+  --FoldS: hue-rotate(80deg);
+  --FoldT: hue-rotate(70deg);
+  --FoldU: hue-rotate(60deg);
+  --FoldV: hue-rotate(50deg);
+  --FoldW: hue-rotate(40deg);
+  --FoldX: hue-rotate(30deg);
+  --FoldY: hue-rotate(20deg);
+  --FoldZ: hue-rotate(10deg);
+}
+
+body.bt-toggle-colorful-folder.folder-colorful-six {
+  --Fold0: #fc5c65;
+  --Fold1: #fd9644;
+  --Fold2: #fed330;
+  --Fold3: #26de81;
+  --Fold4: #2bcbba;
+  --Fold5: #45aaf2;
+  --Fold6: #4b7bec;
+  --Fold7: #a55eea;
+  --Fold8: #d1d8e0;
+  --Fold9: #778ca3;
+  --FoldA: #eb3b5a;
+  --FoldB: #fa8231;
+  --FoldC: #f7b731;
+  --FoldD: #20bf6b;
+  --FoldE: #0fb9b1;
+  --FoldF: #2d98da;
+  --FoldG: #3867d6;
+  --FoldH: #8854d0;
+  --FoldI: #a5b1c2;
+  --FoldJ: #4b6584;
+  --FoldK: #fc5c65;
+  --FoldL: #fd9644;
+  --FoldM: #fed330;
+  --FoldN: #26de81;
+  --FoldO: #2bcbba;
+  --FoldP: #45aaf2;
+  --FoldQ: #4b7bec;
+  --FoldR: #a55eea;
+  --FoldS: #d1d8e0;
+  --FoldT: #778ca3;
+  --FoldU: #eb3b5a;
+  --FoldV: #fa8231;
+  --FoldW: #f7b731;
+  --FoldX: #20bf6b;
+  --FoldY: #0fb9b1;
+  --FoldZ: #2d98da;
+}
+
+/* folder-colorful-custom */
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder .nav-folder-title:hover,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder .nav-file-title:hover {
+  font-weight: bold;
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful, .folder-style-change-options-colorful-order) .nav-folder-title {
+  margin-bottom: 0;
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title + .nav-folder-children .nav-file-title.is-active {
+  opacity: 0.8;
+  background-color: var(--folder-colorful-custom-color);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='0'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='0'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='0'] + .nav-folder-children .nav-file-title.is-active {
+  filter: var(--Fold0);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='1'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='1'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='1'] + .nav-folder-children .nav-file-title.is-active {
+  filter: var(--Fold1);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='2'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='2'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='2'] + .nav-folder-children .nav-file-title.is-active {
+  filter: var(--Fold2);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='3'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='3'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='3'] + .nav-folder-children .nav-file-title.is-active {
+  filter: var(--Fold3);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='4'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='4'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='4'] + .nav-folder-children .nav-file-title.is-active {
+  filter: var(--Fold4);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='5'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='5'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='5'] + .nav-folder-children .nav-file-title.is-active {
+  filter: var(--Fold5);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='6'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='6'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='6'] + .nav-folder-children .nav-file-title.is-active {
+  filter: var(--Fold6);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='7'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='7'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='7'] + .nav-folder-children .nav-file-title.is-active {
+  filter: var(--Fold7);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='8'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='8'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='8'] + .nav-folder-children .nav-file-title.is-active {
+  filter: var(--Fold8);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='9'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='9'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='9'] + .nav-folder-children .nav-file-title.is-active {
+  filter: var(--Fold9);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='A'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='A'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='A'] + .nav-folder-children .nav-file-title.is-active {
+  filter: var(--FoldA);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='B'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='B'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='B'] + .nav-folder-children .nav-file-title.is-active {
+  filter: var(--FoldB);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='C'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='C'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='C'] + .nav-folder-children .nav-file-title.is-active {
+  filter: var(--FoldC);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='D'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='D'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='D'] + .nav-folder-children .nav-file-title.is-active {
+  filter: var(--FoldD);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='E'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='E'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='E'] + .nav-folder-children .nav-file-title.is-active {
+  filter: var(--FoldE);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='F'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='F'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='F'] + .nav-folder-children .nav-file-title.is-active {
+  filter: var(--FoldF);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='G'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='G'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='G'] + .nav-folder-children .nav-file-title.is-active {
+  filter: var(--FoldG);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='H'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='H'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='H'] + .nav-folder-children .nav-file-title.is-active {
+  filter: var(--FoldH);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='I'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='I'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='I'] + .nav-folder-children .nav-file-title.is-active {
+  filter: var(--FoldI);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='J'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='J'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='J'] + .nav-folder-children .nav-file-title.is-active {
+  filter: var(--FoldJ);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='K'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='K'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='K'] + .nav-folder-children .nav-file-title.is-active {
+  filter: var(--FoldK);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='L'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='L'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='L'] + .nav-folder-children .nav-file-title.is-active {
+  filter: var(--FoldL);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='M'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='M'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='M'] + .nav-folder-children .nav-file-title.is-active {
+  filter: var(--FoldM);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='N'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='N'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='N'] + .nav-folder-children .nav-file-title.is-active {
+  filter: var(--FoldN);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='O'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='O'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='O'] + .nav-folder-children .nav-file-title.is-active {
+  filter: var(--FoldO);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='P'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='P'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='P'] + .nav-folder-children .nav-file-title.is-active {
+  filter: var(--FoldP);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='Q'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='Q'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='Q'] + .nav-folder-children .nav-file-title.is-active {
+  filter: var(--FoldQ);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='R'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='R'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='R'] + .nav-folder-children .nav-file-title.is-active {
+  filter: var(--FoldR);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='S'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='S'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='S'] + .nav-folder-children .nav-file-title.is-active {
+  filter: var(--FoldS);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='T'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='T'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='T'] + .nav-folder-children .nav-file-title.is-active {
+  filter: var(--FoldT);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='U'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='U'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='U'] + .nav-folder-children .nav-file-title.is-active {
+  filter: var(--FoldU);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='V'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='V'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='V'] + .nav-folder-children .nav-file-title.is-active {
+  filter: var(--FoldV);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='W'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='W'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='W'] + .nav-folder-children .nav-file-title.is-active {
+  filter: var(--FoldW);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='X'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='X'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='X'] + .nav-folder-children .nav-file-title.is-active {
+  filter: var(--FoldX);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='Y'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='Y'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='Y'] + .nav-folder-children .nav-file-title.is-active {
+  filter: var(--FoldY);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='Z'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='Z'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='Z'] + .nav-folder-children .nav-file-title.is-active {
+  filter: var(--FoldZ);
+}
+
+/* folder-style-change-options-colorful-order */
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-order .nav-files-container > div > .tree-item.nav-folder .nav-file-title {
+  color: var(--FoldText);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-order .nav-files-container > div > .tree-item.nav-folder .nav-folder-title.is-active,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-order .nav-files-container > div > .tree-item.nav-folder .nav-folder-title:hover {
+  font-weight: bold;
+  filter: saturate(150%);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-order .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 2) .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-order .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 2) .nav-folder-title + .nav-folder-children {
+  --tab-color: var(--Fold0);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-order .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 3) .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-order .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 3) .nav-folder-title + .nav-folder-children {
+  --tab-color: var(--Fold1);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-order .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 4) .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-order .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 4) .nav-folder-title + .nav-folder-children {
+  --tab-color: var(--Fold2);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-order .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 5) .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-order .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 5) .nav-folder-title + .nav-folder-children {
+  --tab-color: var(--Fold3);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-order .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 6) .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-order .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 6) .nav-folder-title + .nav-folder-children {
+  --tab-color: var(--Fold4);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-order .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 7) .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-order .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 7) .nav-folder-title + .nav-folder-children {
+  --tab-color: var(--Fold5);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-order .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 8) .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-order .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 8) .nav-folder-title + .nav-folder-children {
+  --tab-color: var(--Fold6);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-order .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 9) .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-order .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 9) .nav-folder-title + .nav-folder-children {
+  --tab-color: var(--Fold7);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-order .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 10) .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-order .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 10) .nav-folder-title + .nav-folder-children {
+  --tab-color: var(--Fold8);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-order .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 11) .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-order .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 11) .nav-folder-title + .nav-folder-children {
+  --tab-color: var(--Fold9);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-order .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 12) .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-order .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 12) .nav-folder-title + .nav-folder-children {
+  --tab-color: var(--FoldA);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-order .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 13) .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-order .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 13) .nav-folder-title + .nav-folder-children {
+  --tab-color: var(--FoldB);
+}
+
+/* folder colorful title */
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-title .nav-files-container > div > .tree-item.nav-folder .nav-folder-title.is-active,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-title .nav-files-container > div > .tree-item.nav-folder .nav-file-title.is-active,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-title .nav-files-container > div > .tree-item.nav-folder .nav-folder-title:hover,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-title .nav-files-container > div > .tree-item.nav-folder .nav-file-title:hover {
+  font-weight: bold;
+  filter: saturate(150%);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-title .nav-files-container > div > .tree-item.nav-folder .nav-folder-title {
+  font-weight: 600;
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-title .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 2) .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-title .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 2) .nav-file-title {
+  --tab-color: var(--Fold0);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-title .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 3) .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-title .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 3) .nav-file-title {
+  --tab-color: var(--Fold1);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-title .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 4) .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-title .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 4) .nav-file-title {
+  --tab-color: var(--Fold2);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-title .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 5) .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-title .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 5) .nav-file-title {
+  --tab-color: var(--Fold3);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-title .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 6) .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-title .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 6) .nav-file-title {
+  --tab-color: var(--Fold4);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-title .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 7) .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-title .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 7) .nav-file-title {
+  --tab-color: var(--Fold5);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-title .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 8) .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-title .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 8) .nav-file-title {
+  --tab-color: var(--Fold6);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-title .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 9) .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-title .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 9) .nav-file-title {
+  --tab-color: var(--Fold7);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-title .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 10) .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-title .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 10) .nav-file-title {
+  --tab-color: var(--Fold8);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-title .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 11) .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-title .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 11) .nav-file-title {
+  --tab-color: var(--Fold9);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-title .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 12) .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-title .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 12) .nav-file-title {
+  --tab-color: var(--FoldA);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-title .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 13) .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-title .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 13) .nav-file-title {
+  --tab-color: var(--FoldB);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-title .nav-files-container > div > .tree-item.nav-folder .nav-folder-title {
+  color: var(--tab-color);
+  filter: brightness(0.8);
+}
+
+body.theme-dark.bt-toggle-colorful-folder.folder-style-change-options-colorful-title:not(.folder-colorful-six) .nav-files-container > div > .tree-item.nav-folder .nav-folder-title,
+body.theme-dark.bt-toggle-colorful-folder.folder-style-change-options-colorful-title:not(.folder-colorful-six) .nav-files-container > div > .tree-item.nav-folder .nav-file-title {
+  filter: brightness(2);
+}
+
+/* folder-colorful-custom */
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-order.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-order.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder .nav-folder-title + .nav-folder-children {
+  background-color: var(--folder-colorful-custom-color);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful, .folder-style-change-options-colorful-order, .folder-style-change-options-colorful-title) {
+  --folder-colorful-custom-color: var(--theme-color);
+}
+
+body.bt-toggle-colorful-folder.folder-colorful-custom:not(.folder-style-change-options-colorful-default) .nav-files-container > div > .tree-item.nav-folder .nav-folder-title.is-active,
+body.bt-toggle-colorful-folder.folder-colorful-custom:not(.folder-style-change-options-colorful-default) .nav-files-container > div > .tree-item.nav-folder .nav-file-title.is-active,
+body.bt-toggle-colorful-folder.folder-colorful-custom:not(.folder-style-change-options-colorful-default) .nav-files-container > div > .tree-item.nav-folder .nav-folder-title:hover,
+body.bt-toggle-colorful-folder.folder-colorful-custom:not(.folder-style-change-options-colorful-default) .nav-files-container > div > .tree-item.nav-folder .nav-file-title:hover {
+  font-weight: bold;
+  filter: saturate(150%);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-title.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-title.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder .nav-file-title {
+  color: var(--folder-colorful-custom-color);
+  font-weight: 600;
+}
+
+body.bt-toggle-colorful-folder.folder-colorful-custom:not(.folder-style-change-options-colorful-default):not(.folder-style-change-options-colorful-tab-liked) .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 2) .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-colorful-custom:not(.folder-style-change-options-colorful-default):not(.folder-style-change-options-colorful-tab-liked) .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 2) .nav-file-title {
+  filter: var(--Fold0);
+}
+
+body.bt-toggle-colorful-folder.folder-colorful-custom:not(.folder-style-change-options-colorful-default):not(.folder-style-change-options-colorful-tab-liked) .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 3) .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-colorful-custom:not(.folder-style-change-options-colorful-default):not(.folder-style-change-options-colorful-tab-liked) .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 3) .nav-file-title {
+  filter: var(--Fold1);
+}
+
+body.bt-toggle-colorful-folder.folder-colorful-custom:not(.folder-style-change-options-colorful-default):not(.folder-style-change-options-colorful-tab-liked) .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 4) .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-colorful-custom:not(.folder-style-change-options-colorful-default):not(.folder-style-change-options-colorful-tab-liked) .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 4) .nav-file-title {
+  filter: var(--Fold2);
+}
+
+body.bt-toggle-colorful-folder.folder-colorful-custom:not(.folder-style-change-options-colorful-default):not(.folder-style-change-options-colorful-tab-liked) .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 5) .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-colorful-custom:not(.folder-style-change-options-colorful-default):not(.folder-style-change-options-colorful-tab-liked) .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 5) .nav-file-title {
+  filter: var(--Fold3);
+}
+
+body.bt-toggle-colorful-folder.folder-colorful-custom:not(.folder-style-change-options-colorful-default):not(.folder-style-change-options-colorful-tab-liked) .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 6) .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-colorful-custom:not(.folder-style-change-options-colorful-default):not(.folder-style-change-options-colorful-tab-liked) .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 6) .nav-file-title {
+  filter: var(--Fold4);
+}
+
+body.bt-toggle-colorful-folder.folder-colorful-custom:not(.folder-style-change-options-colorful-default):not(.folder-style-change-options-colorful-tab-liked) .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 7) .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-colorful-custom:not(.folder-style-change-options-colorful-default):not(.folder-style-change-options-colorful-tab-liked) .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 7) .nav-file-title {
+  filter: var(--Fold5);
+}
+
+body.bt-toggle-colorful-folder.folder-colorful-custom:not(.folder-style-change-options-colorful-default):not(.folder-style-change-options-colorful-tab-liked) .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 8) .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-colorful-custom:not(.folder-style-change-options-colorful-default):not(.folder-style-change-options-colorful-tab-liked) .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 8) .nav-file-title {
+  filter: var(--Fold6);
+}
+
+body.bt-toggle-colorful-folder.folder-colorful-custom:not(.folder-style-change-options-colorful-default):not(.folder-style-change-options-colorful-tab-liked) .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 9) .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-colorful-custom:not(.folder-style-change-options-colorful-default):not(.folder-style-change-options-colorful-tab-liked) .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 9) .nav-file-title {
+  filter: var(--Fold7);
+}
+
+body.bt-toggle-colorful-folder.folder-colorful-custom:not(.folder-style-change-options-colorful-default):not(.folder-style-change-options-colorful-tab-liked) .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 10) .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-colorful-custom:not(.folder-style-change-options-colorful-default):not(.folder-style-change-options-colorful-tab-liked) .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 10) .nav-file-title {
+  filter: var(--Fold8);
+}
+
+body.bt-toggle-colorful-folder.folder-colorful-custom:not(.folder-style-change-options-colorful-default):not(.folder-style-change-options-colorful-tab-liked) .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 11) .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-colorful-custom:not(.folder-style-change-options-colorful-default):not(.folder-style-change-options-colorful-tab-liked) .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 11) .nav-file-title {
+  filter: var(--Fold9);
+}
+
+body.bt-toggle-colorful-folder.folder-colorful-custom:not(.folder-style-change-options-colorful-default):not(.folder-style-change-options-colorful-tab-liked) .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 12) .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-colorful-custom:not(.folder-style-change-options-colorful-default):not(.folder-style-change-options-colorful-tab-liked) .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 12) .nav-file-title {
+  filter: var(--FoldA);
+}
+
+body.bt-toggle-colorful-folder.folder-colorful-custom:not(.folder-style-change-options-colorful-default):not(.folder-style-change-options-colorful-tab-liked) .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 13) .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-colorful-custom:not(.folder-style-change-options-colorful-default):not(.folder-style-change-options-colorful-tab-liked) .nav-files-container > div > .tree-item.nav-folder:nth-child(12n + 13) .nav-file-title {
+  filter: var(--FoldB);
+}
+
+/* folder-style-change-options-colorful-border */
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-border.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder {
+  border-left: 2px solid var(--folder-colorful-custom-color);
+  filter: var(--tab-color);
+}
+
+/* folder-style-change-options-colorful-tab-liked */
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-tab-liked.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder {
+  border: none;
+  border-left: 2px solid var(--folder-colorful-custom-color);
+  filter: var(--tab-color);
+
+  @supports (border: 1px solid color-mix(in srgb, var(--folder-colorful-custom-color) 30%, var(--background-secondary))) {
+    border: 1px solid color-mix(in srgb, var(--folder-colorful-custom-color) 30%, var(--background-secondary));
+  }
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-tab-liked.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder.is-collapsed > .tree-item-self.is-clickable.nav-folder-title::before {
+  background-color: var(--folder-colorful-custom-color);
+  filter: var(--tab-color);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-tab-liked.folder-colorful-custom .nav-files-container > div > .tree-item.nav-folder > .tree-item-self.is-clickable.nav-folder-title::before {
+  background-color: var(--folder-colorful-custom-color);
+  filter: var(--tab-color);
+}
+
+/* If nav open(collapsed) give color */
+.nav-folder:not(.is-collapsed) > .nav-folder-title {
+  color: var(--text-normal);
+}
+
+/* Set up explorer container margins */
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful, .folder-style-change-options-colorful-order) .nav-files-container {
+  margin: 0 5px;
+}
+
+/* Remove collapse arrow from top level folders */
+body.remove-arrow.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful, .folder-style-change-options-colorful-order) .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title > .nav-folder-collapse-indicator {
+  display: none;
+}
+
+/* Top Level Folder Titles */
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful, .folder-style-change-options-colorful-order) .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title {
+  color: var(--FoldText);
+  padding: var(--nav-item-parent-padding);
+  padding-bottom: 4px;
+  /* padding-left: 3px; */
+  margin-top: 3px;
+  /* space between top level sections */
+  border-radius: 5px 5px 0 0;
+}
+
+/* General Nav Folder Children (this is the part that expands from each top level folder) */
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful, .folder-style-change-options-colorful-order) .nav-files-container > div > .tree-item.nav-folder > .nav-folder-children {
+  margin-left: 0;
+  border-radius: 0 0 5px 5px;
+  padding-bottom: 5px;
+  border-left: 0px solid;
+  padding-left: 1em;
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful, .folder-style-change-options-colorful-order) .nav-file-title {
+  padding-left: 5px;
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful, .folder-style-change-options-colorful-order) .nav-file-title-content {
+  color: var(--FoldText);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful, .folder-style-change-options-colorful-order).is-mobile .nav-folder-title {
+  margin-bottom: 0;
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful, .folder-style-change-options-colorful-order) .nav-folder-children .nav-folder-children {
+  border-left: 1px solid var(--text-muted);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful, .folder-style-change-options-colorful-order).is-mobile .nav-files-container > div > .tree-item.nav-folder > .nav-folder-children {
+  padding-bottom: 5px;
+}
+
+/* Adds hemisphere marker to active file instead */
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful, .folder-style-change-options-colorful-order) .nav-file-title.is-active::before {
+  content: '';
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  height: 2px;
+  width: 100%;
+  background-image: linear-gradient(to right, var(--theme-color), transparent 90%);
+}
+
+/*
+  16 Top level Folders By Starting Digit (0-F)
+  These are set for me by leading number/letter which also ensures they are in the correct order when sorted alphabetically
+  You can change these to match your use case.
+*/
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-folder:has(> .nav-folder-title[data-path^='0']),
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='0'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='0'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='0'] + .nav-folder-children .nav-file-title.is-active {
+  --tab-color: var(--Fold0);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-folder:has(> .nav-folder-title[data-path^='1']),
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='1'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='1'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='1'] + .nav-folder-children .nav-file-title.is-active {
+  --tab-color: var(--Fold1);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-folder:has(> .nav-folder-title[data-path^='2']),
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='2'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='2'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='2'] + .nav-folder-children .nav-file-title.is-active {
+  --tab-color: var(--Fold2);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-folder:has(> .nav-folder-title[data-path^='3']),
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='3'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='3'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='3'] + .nav-folder-children .nav-file-title.is-active {
+  --tab-color: var(--Fold3);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-folder:has(> .nav-folder-title[data-path^='4']),
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='4'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='4'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='4'] + .nav-folder-children .nav-file-title.is-active {
+  --tab-color: var(--Fold4);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-folder:has(> .nav-folder-title[data-path^='5']),
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='5'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='5'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='5'] + .nav-folder-children .nav-file-title.is-active {
+  --tab-color: var(--Fold5);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-folder:has(> .nav-folder-title[data-path^='6']),
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='6'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='6'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='6'] + .nav-folder-children .nav-file-title.is-active {
+  --tab-color: var(--Fold6);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-folder:has(> .nav-folder-title[data-path^='7']),
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='7'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='7'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='7'] + .nav-folder-children .nav-file-title.is-active {
+  --tab-color: var(--Fold7);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-folder:has(> .nav-folder-title[data-path^='8']),
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='8'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='8'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='8'] + .nav-folder-children .nav-file-title.is-active {
+  --tab-color: var(--Fold8);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-folder:has(> .nav-folder-title[data-path^='9']),
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='9'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='9'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='9'] + .nav-folder-children .nav-file-title.is-active {
+  --tab-color: var(--Fold9);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-folder:has(> .nav-folder-title[data-path^='A']),
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='A'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='A'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='A'] + .nav-folder-children .nav-file-title.is-active {
+  --tab-color: var(--FoldA);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-folder:has(> .nav-folder-title[data-path^='B']),
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='B'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='B'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='B'] + .nav-folder-children .nav-file-title.is-active {
+  --tab-color: var(--FoldB);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-folder:has(> .nav-folder-title[data-path^='C']),
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='C'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='C'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='C'] + .nav-folder-children .nav-file-title.is-active {
+  --tab-color: var(--FoldC);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-folder:has(> .nav-folder-title[data-path^='D']),
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='D'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='D'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='D'] + .nav-folder-children .nav-file-title.is-active {
+  --tab-color: var(--FoldD);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-folder:has(> .nav-folder-title[data-path^='E']),
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='E'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='E'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='E'] + .nav-folder-children .nav-file-title.is-active {
+  --tab-color: var(--FoldE);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-folder:has(> .nav-folder-title[data-path^='F']),
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='F'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='F'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='F'] + .nav-folder-children .nav-file-title.is-active {
+  --tab-color: var(--FoldF);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-folder:has(> .nav-folder-title[data-path^='G']),
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='G'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='G'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='G'] + .nav-folder-children .nav-file-title.is-active {
+  --tab-color: var(--FoldG);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-folder:has(> .nav-folder-title[data-path^='H']),
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='H'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='H'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='H'] + .nav-folder-children .nav-file-title.is-active {
+  --tab-color: var(--FoldH);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-folder:has(> .nav-folder-title[data-path^='I']),
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='I'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='I'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='I'] + .nav-folder-children .nav-file-title.is-active {
+  --tab-color: var(--FoldI);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-folder:has(> .nav-folder-title[data-path^='J']),
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='J'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='J'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='J'] + .nav-folder-children .nav-file-title.is-active {
+  --tab-color: var(--FoldJ);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-folder:has(> .nav-folder-title[data-path^='K']),
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='K'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='K'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='K'] + .nav-folder-children .nav-file-title.is-active {
+  --tab-color: var(--FoldK);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-folder:has(> .nav-folder-title[data-path^='L']),
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='L'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='L'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='L'] + .nav-folder-children .nav-file-title.is-active {
+  --tab-color: var(--FoldL);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-folder:has(> .nav-folder-title[data-path^='M']),
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='M'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='M'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='M'] + .nav-folder-children .nav-file-title.is-active {
+  --tab-color: var(--FoldM);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-folder:has(> .nav-folder-title[data-path^='N']),
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='N'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='N'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='N'] + .nav-folder-children .nav-file-title.is-active {
+  --tab-color: var(--FoldN);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-folder:has(> .nav-folder-title[data-path^='O']),
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='O'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='O'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='O'] + .nav-folder-children .nav-file-title.is-active {
+  --tab-color: var(--FoldO);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-folder:has(> .nav-folder-title[data-path^='P']),
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='P'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='P'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='P'] + .nav-folder-children .nav-file-title.is-active {
+  --tab-color: var(--FoldP);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-folder:has(> .nav-folder-title[data-path^='Q']),
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='Q'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='Q'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='Q'] + .nav-folder-children .nav-file-title.is-active {
+  --tab-color: var(--FoldQ);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-folder:has(> .nav-folder-title[data-path^='R']),
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='R'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='R'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='R'] + .nav-folder-children .nav-file-title.is-active {
+  --tab-color: var(--FoldR);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-folder:has(> .nav-folder-title[data-path^='S']),
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='S'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='S'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='S'] + .nav-folder-children .nav-file-title.is-active {
+  --tab-color: var(--FoldS);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-folder:has(> .nav-folder-title[data-path^='T']),
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='T'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='T'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='T'] + .nav-folder-children .nav-file-title.is-active {
+  --tab-color: var(--FoldT);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-folder:has(> .nav-folder-title[data-path^='U']),
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='U'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='U'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='U'] + .nav-folder-children .nav-file-title.is-active {
+  --tab-color: var(--FoldU);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-folder:has(> .nav-folder-title[data-path^='V']),
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='V'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='V'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='V'] + .nav-folder-children .nav-file-title.is-active {
+  --tab-color: var(--FoldV);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-folder:has(> .nav-folder-title[data-path^='W']),
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='W'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='W'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='W'] + .nav-folder-children .nav-file-title.is-active {
+  --tab-color: var(--FoldW);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-folder:has(> .nav-folder-title[data-path^='X']),
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='X'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='X'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='X'] + .nav-folder-children .nav-file-title.is-active {
+  --tab-color: var(--FoldX);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-folder:has(> .nav-folder-title[data-path^='Y']),
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='Y'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='Y'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='Y'] + .nav-folder-children .nav-file-title.is-active {
+  --tab-color: var(--FoldY);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-folder:has(> .nav-folder-title[data-path^='Z']),
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='Z'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='Z'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='Z'] + .nav-folder-children .nav-file-title.is-active {
+  --tab-color: var(--FoldZ);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-folder:has(> .nav-folder-title[data-path^='Z']),
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='Z'],
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='Z'] + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title[data-path^='Z'] + .nav-folder-children .nav-file-title.is-active {
+  --tab-color: var(--FoldZ);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-file,
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-folder,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title + .nav-folder-children,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title + .nav-folder-children .nav-file-title.is-active {
+  --tab-color: var(--text-accent);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-folder.mod-root > .nav-folder-children .nav-file-title.is-active {
+  filter: hue-rotate(110deg);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful, .folder-style-change-options-colorful-order) .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title,
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful, .folder-style-change-options-colorful-order) .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title + .nav-folder-children,
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful, .folder-style-change-options-colorful-order) .nav-files-container > div > .tree-item.nav-folder > .nav-folder-title + .nav-folder-children .nav-file-title.is-active {
+  background-color: var(--tab-color, hsla(var(--interactive-accent-hsl), 0.25));
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful .nav-folder-title:hover {
+  font-weight: bold;
+  filter: saturate(250%);
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful, .folder-style-change-options-colorful-order) .nav-folder.mod-root > .nav-folder-title {
+  background-color: initial;
+}
+
+body.folder-style-change-options-colorful-default .setting-item[data-id='folder-style-change-options-colorful-subfolder'] {
+  display: none;
+}
+
+/* Folder icons */
+body:not(.folder-icons) .setting-item[data-id='remove-first-folder-icon'] {
+  display: none;
+}
+
+body.folder-icons .nav-files-container .nav-folder-title-content::before {
+  position: relative;
+  content: '';
+  display: inline-block;
+  opacity: 0.9;
+  top: 2px;
+  margin-left: -1px;
+  width: 0.95rem;
+  height: 0.95rem;
+  margin-right: 5px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: var(--text-folder-file-icon);
+  filter: hue-rotate(160deg);
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2.165 19.551c.186.28.499.449.835.449h15c.4 0 .762-.238.919-.606l3-7A.998.998 0 0 0 21 11h-1V8c0-1.103-.897-2-2-2h-6.655L8.789 4H4c-1.103 0-2 .897-2 2v13h.007a1 1 0 0 0 .158.551zM18 8v3H6c-.4 0-.762.238-.919.606L4 14.129V8h14z"></path></svg>');
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M2.165 19.551c.186.28.499.449.835.449h15c.4 0 .762-.238.919-.606l3-7A.998.998 0 0 0 21 11h-1V8c0-1.103-.897-2-2-2h-6.655L8.789 4H4c-1.103 0-2 .897-2 2v13h.007a1 1 0 0 0 .158.551zM18 8v3H6c-.4 0-.762.238-.919.606L4 14.129V8h14z"></path></svg>');
+}
+
+body.folder-icons .nav-files-container > div > .tree-item.nav-folder.is-collapsed > .tree-item-self.nav-folder-title .nav-folder-title-content::before,
+body.folder-icons .nav-folder-children .nav-folder.is-collapsed .nav-folder-title-content::before {
+  position: relative;
+  content: '';
+  display: inline-block;
+  width: 0.95rem;
+  height: 0.95rem;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: var(--text-folder-file-icon);
+  filter: hue-rotate(160deg);
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 5h-8.586L9.707 3.293A.997.997 0 0 0 9 3H4c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V7c0-1.103-.897-2-2-2zM4 19V7h16l.002 12H4z"></path></svg>');
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M20 5h-8.586L9.707 3.293A.997.997 0 0 0 9 3H4c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2h16c1.103 0 2-.897 2-2V7c0-1.103-.897-2-2-2zM4 19V7h16l.002 12H4z"></path></svg>');
+}
+
+/* Folder underline */
+.folder-note-underline .nav-folder.is-collapsed .nav-folder-title-content {
+  text-decoration-line: underline;
+  text-decoration-color: var(--tab-color);
+  color: var(--tab-color);
+  text-decoration-thickness: 2px;
+  line-height: 1.6;
+  text-underline-offset: 4px;
+}
+
+/*tab-liked/bordered inspired by the OneNote theme in Siyuan software */
+/* Tab container padding */
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container {
+  padding: 0 6px 24px 14px;
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border) .nav-files-container > div > .tree-item.nav-folder > .tree-item-children.nav-folder-children {
+  border-left: none;
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border):not(.default-tabs):not(.remove-arrow) .nav-folder-collapse-indicator::after {
+  display: none;
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-border .nav-files-container > div > .tree-item.nav-folder {
+  border: 1px solid var(--background-modifier-border);
+  margin: 5px 4px 5px 0;
+  border-radius: 3px;
+  border-left: 2px solid var(--tab-color);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-tab-liked .nav-files-container > div > .tree-item.nav-folder {
+  /* folder border */
+  /* border: 1px solid color-mix(in srgb, var(--tab-color) 30%, var(--background-secondary)); */
+  margin: 2px 4px 2px 0;
+  border-radius: 3px;
+  border-left: 3px solid var(--tab-color);
+}
+
+body.is-grabbing .nav-folder-title.is-being-dragged .nav-folder-title-content::before,
+body.is-grabbing .nav-file-title.is-being-dragged .nav-file-title-content::before {
+  background-color: white !important;
+  filter: none !important;
+}
+
+body.is-grabbing .nav-file-title.is-being-dragged,
+body.is-grabbing .nav-folder-title.is-being-dragged {
+  color: white !important;
+  background-color: var(--interactive-accent) !important;
+  border-radius: 0;
+}
+
+/* Only top level folder */
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-tab-liked .nav-files-container > div > .tree-item.nav-file > .tree-item-self.is-clickable.nav-file-title:hover,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-tab-liked .nav-files-container > div > .tree-item.nav-file > .tree-item-self.is-clickable.nav-file-title.is-active,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-tab-liked .nav-files-container > div > .tree-item.nav-file > .tree-item-self.is-clickable.nav-file-title.has-focus,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-tab-liked .nav-files-container > div > .tree-item.nav-folder > .tree-item-self.is-clickable.nav-folder-title:hover,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-tab-liked .nav-files-container > div > .tree-item.nav-folder > .tree-item-self.is-clickable.nav-folder-title.is-active,
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-tab-liked .nav-files-container > div > .tree-item.nav-folder > .tree-item-self.is-clickable.nav-folder-title.has-focus {
+  background: color-mix(in srgb, var(--tab-color) 20%, var(--background-secondary));
+  border-radius: 0;
+}
+
+/* All folders and files */
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border):not(.is-grabbing) .tree-item-self.is-clickable.nav-folder-title:hover,
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border):not(.is-grabbing) .tree-item-self.is-clickable.nav-folder-title.is-active,
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border):not(.is-grabbing) .tree-item-self.is-clickable.nav-folder-title.has-focus,
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border):not(.is-grabbing) .tree-item-self.is-clickable.nav-file-title:hover,
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border):not(.is-grabbing) .tree-item-self.is-clickable.nav-file-title.is-active,
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border):not(.is-grabbing) .tree-item-self.is-clickable.nav-file-title.has-focus {
+  background: linear-gradient(
+    to right,
+    var(--tab-color) 2.5px,
+    color-mix(in srgb, var(--tab-color) 20%, var(--background-secondary)) 2.5px
+  );
+  border-radius: 0;
+}
+
+/* Reset default border radius */
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border):not(.is-grabbing) .tree-item-self.is-clickable.nav-folder-title,
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border):not(.is-grabbing) .tree-item-self.is-clickable.nav-file-title {
+  border-radius: 0;
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-tab-liked .nav-files-container > div > .tree-item.nav-folder.is-collapsed > .tree-item-self.is-clickable.nav-folder-title::before {
+  content: '';
+  width: 6px;
+  height: 20px;
+  position: absolute;
+  margin-left: -30px;
+  border-radius: 3px 0px 0px 3px;
+  background-color: var(--tab-color);
+}
+
+body.bt-toggle-colorful-folder.folder-style-change-options-colorful-tab-liked .nav-files-container > div > .tree-item.nav-folder > .tree-item-self.is-clickable.nav-folder-title::before {
+  content: '';
+  width: 13px;
+  height: 20px;
+  position: absolute;
+  margin-left: -37px;
+  border-radius: 3px 0px 0px 3px;
+  background-color: var(--tab-color);
+}
+
+body.remove-first-folder-icon .nav-files-container > div > .tree-item.nav-folder > .tree-item-self.is-clickable.nav-folder-title .nav-folder-title-content::before {
+  display: none;
+}
+
+/* tab-liked folder icons color */
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-title, .folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border).folder-icons .nav-folder-title-content::before {
+  background-color: var(--text-folder-file-icon);
+  filter: none;
+  opacity: 0.5;
+}
+
+body.folder-colorful-custom.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-title, .folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border).folder-icons .nav-folder-children .nav-folder-title-content::before {
+  background-color: var(--folder-colorful-custom-color);
+}
+
+body.folder-colorful-custom.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-title, .folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border):not(.remove-file-icons) .nav-file-title .nav-file-title-content:not(.mk-tree-text)::before {
+  background-color: var(--folder-colorful-custom-color, var(--text-folder-file-icon));
+}
+
+/* tab-liked note icons color */
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-title, .folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border):not(.remove-file-icons) .nav-file-title .nav-file-title-content:not(.mk-tree-text)::before {
+  background-color: var(--text-folder-file-icon);
+  filter: none;
+  opacity: 0.5;
+}
+
+body.bt-toggle-colorful-folder:is(.folder-style-change-options-colorful-title, .folder-style-change-options-colorful-tab-liked, .folder-style-change-options-colorful-border):not(.default-icons):not(.remove-arrow) .nav-folder-collapse-indicator::before {
+  color: var(--tab-color);
+}
+
+body.background-settings-workplace-background-image .workspace-split:not(.mod-root) .workspace-tab-container {
+  background-color: var(--bt-background-split-container);
+}
+
+body.nowrap-edit-codebox .HyperMD-codeblock {
+  white-space: nowrap;
+}
+
+.modal.mod-settings .vertical-tab-content-container {
+  background: var(--bg-color-settings-6);
+}
+
+/* Remove-arrow */
+body:not(.default-icons):not(.remove-arrow) .nav-folder-collapse-indicator::before {
+  position: absolute;
+  content: '↓';
+  margin-left: 3px;
+  font-weight: bold;
+  color: var(--text-accent);
+  transition: transform 10ms linear 0s;
+}
+
+body.remove-file-icons:not(.remove-arrow) .nav-folder.mod-root > .nav-folder-children > .nav-file {
+  padding-left: 16px;
+}
+
+body.remove-file-icons.remove-arrow .nav-folder.mod-root {
+  padding-left: 4px;
+}
+
+body.remove-arrow .tree-item-self {
+  --icon-opacity: 0;
+}
+
+body.remove-arrow .tree-item-self .tree-item-icon {
+  --icon-opacity: 0;
+}
+
+body.remove-arrow:not(.default-icons):not(.bt-toggle-colorful-folder.folder-style-change-options-colorful-tab-liked) .nav-folder-collapse-indicator::before {
+  display: none;
+}
+
+body.remove-arrow:not(.default-icons) :not([class*='mk-tree']).nav-file-title-content,
+body.remove-arrow:not(.default-icons) :not([class*='mk-tree']).nav-folder-title-content {
+  margin-left: -18px;
+}
+
+body.remove-arrow:not(.default-icons) .tree-item.nav-folder.mod-root > .tree-item-self.nav-folder-title {
+  padding-left: 23px;
+  margin-left: -10px;
+}
+
+body.remove-arrow .nav-folder-title .iconize-icon {
+  margin: 0 22px 0 -18px !important;
+}
+
+/* Toggle folder note */
+.folder-note-dot .nav-folder .nav-folder-title-content {
+  width: 100%;
+}
+
+.folder-note-dot .workspace-leaf-content[data-type='file-explorer'] .nav-folder-title,
+.workspace-leaf-content[data-type='file-explorer'] .tree-item-self.is-clickable.nav-folder-title {
+  padding: var(--nav-item-parent-padding);
+}
+
+.folder-note-dot .workspace-leaf-content > .nav-files-container > div > .tree-item.nav-folder .nav-folder-title:after {
+  color: var(--tab-color);
+  content: '⬤';
+  position: relative;
+  margin-left: 10px;
+  top: 0px;
+  right: 0.3rem;
+  opacity: 0.7;
+}
+
+/* Remove file icons */
+body.remove-file-icons .workspace-leaf-content[data-type='recent-files'] .view-content {
+  padding: unset;
+}
+
+body:not(.remove-file-icons) [data-type='starred'] .nav-file-icon .svg-icon {
+  padding: 4px 0 0;
+}
+
+body:not(.remove-file-icons) .workspace-leaf-content[data-type='starred'] .nav-file-title-content::before {
+  display: none;
+}
+
+body:not(.remove-file-icons) .nav-file-title .nav-file-title-content:not(.mk-tree-text)::before {
+  position: relative;
+  content: '';
+  display: inline-block;
+  width: 0.9rem;
+  opacity: 0.9;
+  top: 0.15rem;
+  height: 0.9rem;
+  margin-right: 5px;
+  background-size: contain;
+  background-repeat: no-repeat;
+  background-position: center center;
+  background-color: var(--text-folder-file-icon);
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill=""><path d="M0 0h24v24H0V0z" fill="none"/><path d="M8 16h8v2H8zm0-4h8v2H8zm6-10H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/></svg>');
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" fill=""><path d="M0 0h24v24H0V0z" fill="none"/><path d="M8 16h8v2H8zm0-4h8v2H8zm6-10H6c-1.1 0-2 .9-2 2v16c0 1.1.89 2 1.99 2H18c1.1 0 2-.9 2-2V8l-6-6zm4 18H6V4h7v5h5v11z"/></svg>');
+}
+
+body:not(.remove-file-icons) .nav-file-title[data-path$='.pdf'] .nav-file-title-content::before {
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" ><path fill="none" d="M0 0h24v24H0z"/><path d="M12 16H8V8h4a4 4 0 1 1 0 8zm-2-6v4h2a2 2 0 1 0 0-4h-2zm5-6H5v16h14V8h-4V4zM3 2.992C3 2.444 3.447 2 3.999 2H16l5 5v13.993A1 1 0 0 1 20.007 22H3.993A1 1 0 0 1 3 21.008V2.992z"/></svg>');
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24" ><path fill="none" d="M0 0h24v24H0z"/><path d="M12 16H8V8h4a4 4 0 1 1 0 8zm-2-6v4h2a2 2 0 1 0 0-4h-2zm5-6H5v16h14V8h-4V4zM3 2.992C3 2.444 3.447 2 3.999 2H16l5 5v13.993A1 1 0 0 1 20.007 22H3.993A1 1 0 0 1 3 21.008V2.992z"/></svg>');
+  filter: hue-rotate(-45deg);
+}
+
+body:not(.remove-file-icons) .nav-file-title[data-path$='.pdf'] .nav-file-tag {
+  background-color: var(--theme-color-translucent-01);
+  color: var(--theme-color);
+  filter: hue-rotate(-45deg);
+}
+
+body:not(.remove-file-icons) .nav-file-title[data-path$='.jpg'] .nav-file-title-content::before,
+body:not(.remove-file-icons) .nav-file-title[data-path$='.png'] .nav-file-title-content::before,
+body:not(.remove-file-icons) .nav-file-title[data-path$='.svg'] .nav-file-title-content::before,
+body:not(.remove-file-icons) .nav-file-title[data-path$='.gif'] .nav-file-title-content::before,
+body:not(.remove-file-icons) .nav-file-title[data-path$='.jpeg'] .nav-file-title-content::before,
+body:not(.remove-file-icons) .nav-file-title[data-path$='.bmp'] .nav-file-title-content::before,
+body:not(.remove-file-icons) .nav-folder-title[data-path*='banner'] .nav-folder-title-content::before {
+  filter: hue-rotate(45deg);
+  mask-image: url("data:image/svg+xml,%3Csvg     viewBox='0 0 1024 1024' version='1.1' xmlns='http://www.w3.org/2000/svg' p-id='3121' %3E%3Cpath d='M266.42944 804.352l123.3408-136.82688a37.93408 37.93408 0 0 1 53.39136-2.90304l81.6896 72.83712a37.92384 37.92384 0 0 0 56.43776-6.76864l99.92704-145.04448a37.91872 37.91872 0 0 1 58.15808-5.12l86.33856 87.31136 66.64704 72.65792-13.9264 60.18048-67.30752 25.46176-529.20832 11.5712z' fill='%23F4CA1C' p-id='3122'%3E%3C/path%3E%3Cpath d='M814.76096 148.48H209.23904A153.26208 153.26208 0 0 0 56.32 301.74208v415.40096A153.26208 153.26208 0 0 0 209.23904 870.4h605.52192A153.26208 153.26208 0 0 0 967.68 717.13792V301.74208A153.26208 153.26208 0 0 0 814.76096 148.48z m83.456 568.65792a83.62496 83.62496 0 0 1-83.456 83.62496H209.23904a83.62496 83.62496 0 0 1-83.456-83.62496V301.74208a83.62496 83.62496 0 0 1 83.456-83.63008h605.52192a83.62496 83.62496 0 0 1 83.456 83.61984v415.40096z m-137.728-298.55744a72.42752 72.42752 0 0 0-111.4112 9.87648l-99.712 145.46432a2.8672 2.8672 0 0 1-2.14528 1.29536 2.81088 2.81088 0 0 1-2.38592-0.75264L463.28832 501.41696a72.52992 72.52992 0 0 0-102.272 5.59104l-123.0848 137.216a34.77504 34.77504 0 1 0 51.67104 46.55616l123.0848-137.216a3.03104 3.03104 0 0 1 4.28544-0.2304l81.51552 73.04192a72.41728 72.41728 0 0 0 108.1088-13.02528l99.71712-145.4592a3.03104 3.03104 0 0 1 4.66432-0.41472l86.15936 87.552a34.78016 34.78016 0 1 0 49.47456-48.896z m-316.2368-33.32608a47.00672 47.00672 0 1 0-46.90432-47.00672 46.95552 46.95552 0 0 0 46.90432 47.00672z' fill='%23adb5bd' p-id='3123'%3E%3C/path%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg     viewBox='0 0 1024 1024' version='1.1' xmlns='http://www.w3.org/2000/svg' p-id='3121' %3E%3Cpath d='M266.42944 804.352l123.3408-136.82688a37.93408 37.93408 0 0 1 53.39136-2.90304l81.6896 72.83712a37.92384 37.92384 0 0 0 56.43776-6.76864l99.92704-145.04448a37.91872 37.91872 0 0 1 58.15808-5.12l86.33856 87.31136 66.64704 72.65792-13.9264 60.18048-67.30752 25.46176-529.20832 11.5712z' fill='%23F4CA1C' p-id='3122'%3E%3C/path%3E%3Cpath d='M814.76096 148.48H209.23904A153.26208 153.26208 0 0 0 56.32 301.74208v415.40096A153.26208 153.26208 0 0 0 209.23904 870.4h605.52192A153.26208 153.26208 0 0 0 967.68 717.13792V301.74208A153.26208 153.26208 0 0 0 814.76096 148.48z m83.456 568.65792a83.62496 83.62496 0 0 1-83.456 83.62496H209.23904a83.62496 83.62496 0 0 1-83.456-83.62496V301.74208a83.62496 83.62496 0 0 1 83.456-83.63008h605.52192a83.62496 83.62496 0 0 1 83.456 83.61984v415.40096z m-137.728-298.55744a72.42752 72.42752 0 0 0-111.4112 9.87648l-99.712 145.46432a2.8672 2.8672 0 0 1-2.14528 1.29536 2.81088 2.81088 0 0 1-2.38592-0.75264L463.28832 501.41696a72.52992 72.52992 0 0 0-102.272 5.59104l-123.0848 137.216a34.77504 34.77504 0 1 0 51.67104 46.55616l123.0848-137.216a3.03104 3.03104 0 0 1 4.28544-0.2304l81.51552 73.04192a72.41728 72.41728 0 0 0 108.1088-13.02528l99.71712-145.4592a3.03104 3.03104 0 0 1 4.66432-0.41472l86.15936 87.552a34.78016 34.78016 0 1 0 49.47456-48.896z m-316.2368-33.32608a47.00672 47.00672 0 1 0-46.90432-47.00672 46.95552 46.95552 0 0 0 46.90432 47.00672z' fill='%23adb5bd' p-id='3123'%3E%3C/path%3E%3C/svg%3E");
+}
+
+body:not(.remove-file-icons) .nav-file-title[data-path$='.jpg'] .nav-file-tag,
+body:not(.remove-file-icons) .nav-file-title[data-path$='.png'] .nav-file-tag,
+body:not(.remove-file-icons) .nav-file-title[data-path$='.svg'] .nav-file-tag,
+body:not(.remove-file-icons) .nav-file-title[data-path$='.gif'] .nav-file-tag,
+body:not(.remove-file-icons) .nav-file-title[data-path$='.jpeg'] .nav-file-tag,
+body:not(.remove-file-icons) .nav-file-title[data-path$='.bmp'] .nav-file-tag {
+  background-color: var(--theme-color-translucent-01);
+  color: var(--theme-color);
+  filter: hue-rotate(45deg);
+}
+
+body:not(.remove-file-icons) .nav-file-title[data-path$='.mp4'] .nav-file-title-content::before,
+body:not(.remove-file-icons) .nav-file-title[data-path$='.webm'] .nav-file-title-content::before,
+body:not(.remove-file-icons) .nav-file-title[data-path$='.ogv'] .nav-file-title-content::before,
+body:not(.remove-file-icons) .nav-file-title[data-path$='.mov'] .nav-file-title-content::before,
+body:not(.remove-file-icons) .nav-file-title[data-path$='.mkv'] .nav-file-title-content::before {
+  filter: hue-rotate(90deg);
+  mask-image: url("data:image/svg+xml,%3Csvg t='1667450951795'  viewBox='0 0 1024 1024' version='1.1' xmlns='http://www.w3.org/2000/svg' p-id='2272' %3E%3Cpath d='M867 219.7H233.6l28.6-40.6c0.3-0.4 0.5-0.7 0.7-1.1 2-3.2 5.5-5.1 9.3-5.1h128c3.9 0 7.4 2 9.4 5.2 8.6 13.8 26.7 18 40.5 9.5 13.8-8.6 18-26.7 9.5-40.5-12.8-20.7-35-33-59.4-33h-128c-23.7 0-45.5 11.8-58.5 31.6l-52 74h-5.6c-50.7 0-91.9 41.2-91.9 91.9V819c0 50.7 41.2 91.9 91.9 91.9H867c50.7 0 91.9-41.2 91.9-91.9V311.6c0.1-50.7-41.2-91.9-91.9-91.9zM900.1 819c0 18.3-14.9 33.1-33.1 33.1H156.1c-18.3 0-33.1-14.9-33.1-33.1V311.6c0-18.3 14.9-33.1 33.1-33.1H867c18.3 0 33.1 14.9 33.1 33.1V819z' fill='%23adb5bd' p-id='2273'%3E%3C/path%3E%3Cpath d='M800.1 304.5h-60.6c-16.2 0-29.4 13.2-29.4 29.4s13.2 29.4 29.4 29.4h60.6c16.2 0 29.4-13.2 29.4-29.4s-13.2-29.4-29.4-29.4z' fill='%23adb5bd' p-id='2274'%3E%3C/path%3E%3Cpath d='M544 730.9c79.5-18.1 129.5-97.5 111.4-177-4.3-18.8-12.2-36-22.7-51.2 2 34.8-23.8 89.4-70.8 136.4-45.5 45.5-99.9 69.1-134.4 69.4 32.9 22.5 74.6 31.9 116.5 22.4z' fill='%23FFD524' p-id='2275'%3E%3C/path%3E%3Cpath d='M511.3 379.9c-1.5 0-3 0-4.5 0.1-16.2 0.4-29.1 13.8-28.8 30 0.4 16.2 13.9 29.3 30 28.8 50.7-1 97 24.1 124.6 63.9 10.5 15.2 18.4 32.4 22.7 51.2 18.1 79.5-31.9 159-111.4 177-41.8 9.5-83.5 0.1-116.4-22.5-29.6-20.3-52.1-51.3-60.6-89-8.5-37.2-2.4-75.8 17.2-108.5 8.3-13.9 3.8-32-10.2-40.3-14-8.3-32-3.8-40.3 10.2-27.3 45.8-35.8 99.7-24 151.7 12.2 53.8 44.7 99.7 91.4 129.1 33.4 21 71.2 31.8 109.7 31.8 15.4 0 30.9-1.7 46.2-5.2 53.8-12.2 99.7-44.7 129.1-91.4 29.4-46.7 38.9-102.1 26.6-156-21.2-93.9-105.5-160.9-201.3-160.9z' fill='%23adb5bd' p-id='2276'%3E%3C/path%3E%3Cpath d='M416.8 465.9c5.3 0 10.8-1.5 15.6-4.5l4.5-2.7c14.1-8.1 18.8-26.1 10.7-40.2s-26.1-18.9-40.2-10.7c-2.1 1.2-4.2 2.5-6.3 3.8-13.7 8.6-17.9 26.8-9.2 40.5 5.6 8.9 15.2 13.8 24.9 13.8z' fill='%23adb5bd' p-id='2277'%3E%3C/path%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg t='1667450951795'  viewBox='0 0 1024 1024' version='1.1' xmlns='http://www.w3.org/2000/svg' p-id='2272' %3E%3Cpath d='M867 219.7H233.6l28.6-40.6c0.3-0.4 0.5-0.7 0.7-1.1 2-3.2 5.5-5.1 9.3-5.1h128c3.9 0 7.4 2 9.4 5.2 8.6 13.8 26.7 18 40.5 9.5 13.8-8.6 18-26.7 9.5-40.5-12.8-20.7-35-33-59.4-33h-128c-23.7 0-45.5 11.8-58.5 31.6l-52 74h-5.6c-50.7 0-91.9 41.2-91.9 91.9V819c0 50.7 41.2 91.9 91.9 91.9H867c50.7 0 91.9-41.2 91.9-91.9V311.6c0.1-50.7-41.2-91.9-91.9-91.9zM900.1 819c0 18.3-14.9 33.1-33.1 33.1H156.1c-18.3 0-33.1-14.9-33.1-33.1V311.6c0-18.3 14.9-33.1 33.1-33.1H867c18.3 0 33.1 14.9 33.1 33.1V819z' fill='%23adb5bd' p-id='2273'%3E%3C/path%3E%3Cpath d='M800.1 304.5h-60.6c-16.2 0-29.4 13.2-29.4 29.4s13.2 29.4 29.4 29.4h60.6c16.2 0 29.4-13.2 29.4-29.4s-13.2-29.4-29.4-29.4z' fill='%23adb5bd' p-id='2274'%3E%3C/path%3E%3Cpath d='M544 730.9c79.5-18.1 129.5-97.5 111.4-177-4.3-18.8-12.2-36-22.7-51.2 2 34.8-23.8 89.4-70.8 136.4-45.5 45.5-99.9 69.1-134.4 69.4 32.9 22.5 74.6 31.9 116.5 22.4z' fill='%23FFD524' p-id='2275'%3E%3C/path%3E%3Cpath d='M511.3 379.9c-1.5 0-3 0-4.5 0.1-16.2 0.4-29.1 13.8-28.8 30 0.4 16.2 13.9 29.3 30 28.8 50.7-1 97 24.1 124.6 63.9 10.5 15.2 18.4 32.4 22.7 51.2 18.1 79.5-31.9 159-111.4 177-41.8 9.5-83.5 0.1-116.4-22.5-29.6-20.3-52.1-51.3-60.6-89-8.5-37.2-2.4-75.8 17.2-108.5 8.3-13.9 3.8-32-10.2-40.3-14-8.3-32-3.8-40.3 10.2-27.3 45.8-35.8 99.7-24 151.7 12.2 53.8 44.7 99.7 91.4 129.1 33.4 21 71.2 31.8 109.7 31.8 15.4 0 30.9-1.7 46.2-5.2 53.8-12.2 99.7-44.7 129.1-91.4 29.4-46.7 38.9-102.1 26.6-156-21.2-93.9-105.5-160.9-201.3-160.9z' fill='%23adb5bd' p-id='2276'%3E%3C/path%3E%3Cpath d='M416.8 465.9c5.3 0 10.8-1.5 15.6-4.5l4.5-2.7c14.1-8.1 18.8-26.1 10.7-40.2s-26.1-18.9-40.2-10.7c-2.1 1.2-4.2 2.5-6.3 3.8-13.7 8.6-17.9 26.8-9.2 40.5 5.6 8.9 15.2 13.8 24.9 13.8z' fill='%23adb5bd' p-id='2277'%3E%3C/path%3E%3C/svg%3E");
+}
+
+body:not(.remove-file-icons) .nav-file-title[data-path$='.mp4'] .nav-file-tag,
+body:not(.remove-file-icons) .nav-file-title[data-path$='.webm'] .nav-file-tag,
+body:not(.remove-file-icons) .nav-file-title[data-path$='.ogv'] .nav-file-tag,
+body:not(.remove-file-icons) .nav-file-title[data-path$='.mov'] .nav-file-tag,
+body:not(.remove-file-icons) .nav-file-title[data-path$='.mkv'] .nav-file-tag {
+  background-color: var(--theme-color-translucent-01);
+  color: var(--theme-color);
+  filter: hue-rotate(90deg);
+}
+
+body:not(.remove-file-icons) .nav-file-title[data-path$='.mp3'] .nav-file-title-content::before,
+body:not(.remove-file-icons) .nav-file-title[data-path$='.wav'] .nav-file-title-content::before,
+body:not(.remove-file-icons) .nav-file-title[data-path$='.m4a'] .nav-file-title-content::before,
+body:not(.remove-file-icons) .nav-file-title[data-path$='.ogg'] .nav-file-title-content::before,
+body:not(.remove-file-icons) .nav-file-title[data-path$='.3gp'] .nav-file-title-content::before,
+body:not(.remove-file-icons) .nav-file-title[data-path$='.flac'] .nav-file-title-content::before {
+  filter: hue-rotate(-90deg);
+  mask-image: url("data:image/svg+xml,%3Csvg t='1667450617533'  viewBox='0 0 1024 1024' version='1.1' xmlns='http://www.w3.org/2000/svg' p-id='2116' %3E%3Cpath d='M512 900.8c214.4 0 388.9-174.4 388.9-388.9 0-54-11.1-105.4-31-152.1 10.1 106.6-34.1 271.1-172 382.9-143.8 116.6-375.7 80.7-477 26.6 71.2 80.6 175.3 131.5 291.1 131.5z' fill='%23FFD524' p-id='2117'%3E%3C/path%3E%3Cpath d='M512 64.2c-26.1 0-52.2 2.3-77.7 6.7-16 2.8-26.7 18.1-23.9 34.1 2.8 16 18.1 26.7 34.1 23.9 22.2-3.9 44.9-5.9 67.6-5.9 160.5 0 298.5 97.7 357.8 236.7 20 46.8 31 98.2 31 152.1 0 214.4-174.4 388.9-388.9 388.9-115.8 0-219.9-50.9-291.2-131.5-60.7-68.6-97.7-158.7-97.7-257.4 0-124.2 57.2-238 157.1-312.3 13-9.7 15.8-28.2 6.1-41.2-9.7-13-28.2-15.8-41.2-6.1C131.8 236.7 64.2 371.1 64.2 512c0 246.9 200.9 447.8 447.8 447.8S959.7 758.9 959.7 512 758.9 64.2 512 64.2z' fill='%23adb5bd' p-id='2118'%3E%3C/path%3E%3Cpath d='M343.2 158.6c4 0 8-0.8 11.9-2.5 3.4-1.5 6.8-3 10.3-4.4 15-6.2 22.3-23.4 16.1-38.4-6.2-15-23.3-22.3-38.4-16.1-3.9 1.6-7.8 3.3-11.7 5-14.9 6.6-21.6 24-15 38.8 4.7 11 15.5 17.6 26.8 17.6zM394.6 787.4c66.2 0 120.9-50.5 127.4-115.1 0.4-2 0.7-4 0.7-6.1V313.6H663c-8 21.5-27.6 49.4-75.9 63.8-15.6 4.6-24.5 21-19.8 36.6 3.8 12.8 15.5 21.1 28.2 21.1 2.8 0 5.6-0.4 8.4-1.2C705.3 403.8 728.9 322 727.2 283c-0.7-15.8-13.6-28.2-29.4-28.2H493.3c-16.3 0-29.4 13.2-29.4 29.4v375.2c0 38.2-31.1 69.2-69.2 69.2s-69.2-31.1-69.2-69.2c0-38.2 31.1-69.2 69.2-69.2 16.3 0 29.4-13.2 29.4-29.4s-13.2-29.4-29.4-29.4c-70.6 0-128.1 57.5-128.1 128.1s57.4 127.9 128 127.9z' fill='%23adb5bd'  p-id='2119'%3E%3C/path%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg t='1667450617533'  viewBox='0 0 1024 1024' version='1.1' xmlns='http://www.w3.org/2000/svg' p-id='2116' %3E%3Cpath d='M512 900.8c214.4 0 388.9-174.4 388.9-388.9 0-54-11.1-105.4-31-152.1 10.1 106.6-34.1 271.1-172 382.9-143.8 116.6-375.7 80.7-477 26.6 71.2 80.6 175.3 131.5 291.1 131.5z' fill='%23FFD524' p-id='2117'%3E%3C/path%3E%3Cpath d='M512 64.2c-26.1 0-52.2 2.3-77.7 6.7-16 2.8-26.7 18.1-23.9 34.1 2.8 16 18.1 26.7 34.1 23.9 22.2-3.9 44.9-5.9 67.6-5.9 160.5 0 298.5 97.7 357.8 236.7 20 46.8 31 98.2 31 152.1 0 214.4-174.4 388.9-388.9 388.9-115.8 0-219.9-50.9-291.2-131.5-60.7-68.6-97.7-158.7-97.7-257.4 0-124.2 57.2-238 157.1-312.3 13-9.7 15.8-28.2 6.1-41.2-9.7-13-28.2-15.8-41.2-6.1C131.8 236.7 64.2 371.1 64.2 512c0 246.9 200.9 447.8 447.8 447.8S959.7 758.9 959.7 512 758.9 64.2 512 64.2z' fill='%23adb5bd' p-id='2118'%3E%3C/path%3E%3Cpath d='M343.2 158.6c4 0 8-0.8 11.9-2.5 3.4-1.5 6.8-3 10.3-4.4 15-6.2 22.3-23.4 16.1-38.4-6.2-15-23.3-22.3-38.4-16.1-3.9 1.6-7.8 3.3-11.7 5-14.9 6.6-21.6 24-15 38.8 4.7 11 15.5 17.6 26.8 17.6zM394.6 787.4c66.2 0 120.9-50.5 127.4-115.1 0.4-2 0.7-4 0.7-6.1V313.6H663c-8 21.5-27.6 49.4-75.9 63.8-15.6 4.6-24.5 21-19.8 36.6 3.8 12.8 15.5 21.1 28.2 21.1 2.8 0 5.6-0.4 8.4-1.2C705.3 403.8 728.9 322 727.2 283c-0.7-15.8-13.6-28.2-29.4-28.2H493.3c-16.3 0-29.4 13.2-29.4 29.4v375.2c0 38.2-31.1 69.2-69.2 69.2s-69.2-31.1-69.2-69.2c0-38.2 31.1-69.2 69.2-69.2 16.3 0 29.4-13.2 29.4-29.4s-13.2-29.4-29.4-29.4c-70.6 0-128.1 57.5-128.1 128.1s57.4 127.9 128 127.9z' fill='%23adb5bd'  p-id='2119'%3E%3C/path%3E%3C/svg%3E");
+}
+
+body:not(.remove-file-icons) .nav-file-title[data-path$='.mp3'] .nav-file-tag,
+body:not(.remove-file-icons) .nav-file-title[data-path$='.wav'] .nav-file-tag,
+body:not(.remove-file-icons) .nav-file-title[data-path$='.m4a'] .nav-file-tag,
+body:not(.remove-file-icons) .nav-file-title[data-path$='.ogg'] .nav-file-tag,
+body:not(.remove-file-icons) .nav-file-title[data-path$='.3gp'] .nav-file-tag,
+body:not(.remove-file-icons) .nav-file-title[data-path$='.flac'] .nav-file-tag {
+  background-color: var(--theme-color-translucent-01);
+  color: var(--theme-color);
+  filter: hue-rotate(-90deg);
+}
+
+body:not(.remove-file-icons) .nav-file-title[data-path$='.canvas'] .nav-file-title-content::before {
+  mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23adb5bd' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='svg-icon lucide-layout-dashboard'%3E%3Crect x='3' y='3' width='7' height='9'%3E%3C/rect%3E%3Crect x='14' y='3' width='7' height='5'%3E%3C/rect%3E%3Crect x='14' y='12' width='7' height='9'%3E%3C/rect%3E%3Crect x='3' y='16' width='7' height='5'%3E%3C/rect%3E%3C/svg%3E");
+  -webkit-mask-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24' fill='none' stroke='%23adb5bd' stroke-width='2' stroke-linecap='round' stroke-linejoin='round' class='svg-icon lucide-layout-dashboard'%3E%3Crect x='3' y='3' width='7' height='9'%3E%3C/rect%3E%3Crect x='14' y='3' width='7' height='5'%3E%3C/rect%3E%3Crect x='14' y='12' width='7' height='9'%3E%3C/rect%3E%3Crect x='3' y='16' width='7' height='5'%3E%3C/rect%3E%3C/svg%3E");
+  filter: hue-rotate(180deg);
+}
+
+body:not(.remove-file-icons) .nav-file-title[data-path$='.canvas'] .nav-file-tag {
+  background-color: var(--theme-color-translucent-01);
+  color: var(--theme-color);
+  filter: hue-rotate(180deg);
+}
+
+body:not(.remove-file-icons) .nav-file-title[data-path$='.excalidraw.md'] .nav-file-title-content::before {
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.404 2.998c-.757-.754-2.077-.751-2.828.005l-1.784 1.791L11.586 7H7a.998.998 0 0 0-.939.658l-4 11c-.133.365-.042.774.232 1.049l2 2a.997.997 0 0 0 1.049.232l11-4A.998.998 0 0 0 17 17v-4.586l2.207-2.207v-.001h.001L21 8.409c.378-.378.586-.881.585-1.415 0-.535-.209-1.038-.588-1.415l-2.593-2.581zm-3.111 8.295A.996.996 0 0 0 15 12v4.3l-9.249 3.363 4.671-4.671c.026.001.052.008.078.008A1.5 1.5 0 1 0 9 13.5c0 .026.007.052.008.078l-4.671 4.671L7.7 9H12c.266 0 .52-.105.707-.293L14.5 6.914 17.086 9.5l-1.793 1.793zm3.206-3.208-2.586-2.586 1.079-1.084 2.593 2.581-1.086 1.089z"></path></svg>');
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M18.404 2.998c-.757-.754-2.077-.751-2.828.005l-1.784 1.791L11.586 7H7a.998.998 0 0 0-.939.658l-4 11c-.133.365-.042.774.232 1.049l2 2a.997.997 0 0 0 1.049.232l11-4A.998.998 0 0 0 17 17v-4.586l2.207-2.207v-.001h.001L21 8.409c.378-.378.586-.881.585-1.415 0-.535-.209-1.038-.588-1.415l-2.593-2.581zm-3.111 8.295A.996.996 0 0 0 15 12v4.3l-9.249 3.363 4.671-4.671c.026.001.052.008.078.008A1.5 1.5 0 1 0 9 13.5c0 .026.007.052.008.078l-4.671 4.671L7.7 9H12c.266 0 .52-.105.707-.293L14.5 6.914 17.086 9.5l-1.793 1.793zm3.206-3.208-2.586-2.586 1.079-1.084 2.593 2.581-1.086 1.089z"></path></svg>');
+  filter: hue-rotate(135deg);
+}
+
+body:not(.remove-file-icons) .nav-file-title[data-path$='.loom'] .nav-file-title-content::before {
+  mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 21h15.893c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2H4c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2zm0-2v-5h4v5H4zM14 7v5h-4V7h4zM8 7v5H4V7h4zm2 12v-5h4v5h-4zm6 0v-5h3.894v5H16zm3.893-7H16V7h3.893v5z"></path></svg>');
+  -webkit-mask-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><path d="M4 21h15.893c1.103 0 2-.897 2-2V5c0-1.103-.897-2-2-2H4c-1.103 0-2 .897-2 2v14c0 1.103.897 2 2 2zm0-2v-5h4v5H4zM14 7v5h-4V7h4zM8 7v5H4V7h4zm2 12v-5h4v5h-4zm6 0v-5h3.894v5H16zm3.893-7H16V7h3.893v5z"></path></svg>');
+  filter: hue-rotate(200deg);
+}
+
+body:not(.remove-file-icons) .nav-file-title[data-path$='.loom'] .nav-file-tag {
+  background-color: var(--theme-color-translucent-01);
+  color: var(--theme-color);
+  filter: hue-rotate(200deg);
+}
+
+body.dark-background-file:not(.remove-file-icons):not(.bt-toggle-colorful-folder.folder-style-change-options-colorful) .nav-file-title.is-active[data-path$='.md'] > .nav-file-title-content::before {
+  background-color: var(--white);
+}
+
+body:not(.remove-file-icons) .nav-file-title.is-active[data-path$='.md'] > .nav-file-title-content::before {
+  background-color: var(--text-folder-file-icon);
+  opacity: 1;
+}
+
+/* File name style */
+body.file-name-wrapped .workspace-leaf-content[data-type='file-explorer'] .nav-file-title-content,
+body.file-name-wrapped .workspace-leaf-content[data-type='file-explorer'] .nav-folder-title-content {
+  white-space: normal;
+}
+
+body.file-name-animation .nav-file-title-content:not(.is-being-renamed):hover {
+  animation: filemove 1.5s 1 normal linear;
+}
+
+body.file-name-animation .nav-file-title-content:not(.is-being-renamed) {
+  min-width: 200px;
+  white-space: nowrap;
+}
+
+body.file-name-animation .nav-file {
+  display: table;
+}
+
+/** file folder name**/
+body.file-name-animation .obsidian-icon-folder-icon {
+  vertical-align: middle;
+  display: inline;
+}
+
+body.file-name-animation .nav-folder-title {
+  white-space: nowrap;
+}
+
+.nav-folder-title-content.is-being-renamed {
+  white-space: break-spaces;
+}
+
+body.file-name-animation .nav-folder-title-content:not(.is-being-renamed) {
+  min-width: 200px;
+  white-space: nowrap;
+}
+
+body.file-name-animation .nav-folder-title-content:not(.is-being-renamed):hover {
+  animation: filemove 1.5s 1 normal linear;
+}
+
+/* Folder note-dot */
+.folder-note-dot .nav-folder .nav-folder-title-content {
+  width: 100%;
+}
+
+.folder-note-dot .workspace-leaf-content[data-type='file-explorer'] .nav-folder-title,
+.workspace-leaf-content[data-type='file-explorer'] .tree-item-self.is-clickable.nav-folder-title {
+  padding: var(--nav-item-parent-padding);
+}
+
+.folder-note-dot .workspace-leaf-content > .nav-files-container > div > .tree-item.nav-folder .nav-folder-title:after {
+  color: var(--tab-color);
+  content: '⬤';
+  position: relative;
+  margin-left: 10px;
+  top: 0px;
+  right: 0.3rem;
+  opacity: 0.7;
+}

@@ -1,0 +1,71 @@
+/* @settings
+name: Main Style Settings
+id: main-style-settings
+settings:
+-
+  id: remove-ident-from-line-numbers
+  title: Line-numbers - Remove ident
+  type: class-toggle
+  default: true
+-
+  id: hide-line-numbers-in-mobile
+  title: Line-numbers - Hide in mobile
+  type: class-toggle
+  default: true
+-
+  id: file-diff-allow-text-selection
+  title: File-diff - allow text selection
+  type: class-toggle
+  default: true
+*/
+
+/*
+  REMOVE IDENTS FROM LINE NUMBERS
+*/
+/* Remove left and right padding from the gutter (line numbers container) */
+.remove-ident-from-line-numbers .cm-gutters {
+  margin-left: 0 !important;
+  margin-right: 16px !important;
+}
+
+/* Remove internal spacing from the line numbers wrapper */
+.remove-ident-from-line-numbers .cm-gutter,
+/* Remove spacing around each individual line number */
+.remove-ident-from-line-numbers .cm-gutterElement {
+  padding: 0 !important;
+  margin-left: 0 !important;
+  padding-left: 0 !important;
+}
+
+/* Hide for mobile */
+body.is-mobile .cm-gutters {
+  display: none !important;
+}
+
+/*
+  FILE-DIFF
+*/
+/* Allow text selection */
+.file-diff-allow-text-selection .file-diff__container {
+	user-select: text !important;
+}
+
+/*
+  Creating a GRID callout for nested callouts
+*/
+.callout[data-callout="grid"] > .callout-content {
+  display: flex;
+  flex-direction: row;
+  gap: 20px;
+}
+
+.callout[data-callout="grid"] > .callout-content > .callout {
+  flex: 1;
+}
+
+/* adaptive */
+@media (max-width: 600px) {
+  .callout[data-callout="grid"] > .callout-content {
+    flex-direction: column;
+  }
+}
