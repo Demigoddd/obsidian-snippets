@@ -51,21 +51,21 @@ body.is-mobile .cm-gutters {
 }
 
 /*
-  Creating a GRID callout for nested callouts
+  Creating STAGE callout for nested callouts
 */
-.callout[data-callout="grid"] > .callout-content {
+.callout[data-callout="stage"] > .callout-content {
   display: flex;
   flex-direction: row;
   gap: 20px;
 }
 
-.callout[data-callout="grid"] > .callout-content > .callout {
+.callout[data-callout="stage"] > .callout-content > .callout {
   flex: 1;
 }
 
 /* adaptive */
 @media (max-width: 600px) {
-  .callout[data-callout="grid"] > .callout-content {
+  .callout[data-callout="stage"] > .callout-content {
     flex-direction: column;
   }
 }
