@@ -43,6 +43,14 @@ body.is-mobile .cm-gutters {
 }
 
 /*
+  Embed
+*/
+/* Remove left line and padding  */
+body {
+  --embed-padding: 0 0 0 6px;
+}
+
+/*
   FILE-DIFF
 */
 /* Allow text selection */
@@ -53,19 +61,20 @@ body.is-mobile .cm-gutters {
 /*
   Creating STAGE callout for nested callouts
 */
+.callout[data-callout="stage"] {
+  --callout-color: 166, 189, 197;
+  --callout-icon: lucide-grid;
+  --callout-padding: 6px;
+}
+
 .callout[data-callout="stage"] > .callout-content {
   display: flex;
   flex-direction: row;
-  gap: 20px;
+  flex-wrap: wrap;
+  gap: 10px;
 }
 
 .callout[data-callout="stage"] > .callout-content > .callout {
-  flex: 1;
-}
-
-/* adaptive */
-@media (max-width: 600px) {
-  .callout[data-callout="stage"] > .callout-content {
-    flex-direction: column;
-  }
+  flex: 1 1 280px;
+  margin-bottom: 0;
 }
