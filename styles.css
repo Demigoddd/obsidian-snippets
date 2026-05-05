@@ -78,3 +78,32 @@ body {
   flex: 1 1 280px;
   margin-bottom: 0;
 }
+
+.callout[data-callout="stage"][data-callout-metadata*="success"] {
+  --callout-color: 8, 185, 78 !important;
+}
+
+.callout[data-callout="stage"][data-callout-metadata*="tip"] {
+  --callout-color: 0, 191, 188 !important;
+}
+
+.callout[data-callout="stage"][data-callout-metadata*="example"] {
+  --callout-color: 120, 82, 238 !important;
+}
+
+.callout[data-callout="stage"][data-callout-metadata*="error"] {
+  --callout-color: 233, 49, 71 !important;
+}
+
+.callout[data-callout="stage"][data-callout-metadata*="warning"] {
+  --callout-color: 236, 117, 0 !important;
+}
+
+.callout[data-callout="stage"][data-callout-metadata*="info"] {
+  --callout-color: 8, 109, 221 !important;
+}
+
+.callout[data-callout="stage"][data-callout-metadata*="limit"] > .callout-content > .callout {
+  max-height: 500px;
+  overflow-y: auto;
+}
