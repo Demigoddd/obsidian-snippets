@@ -103,7 +103,17 @@ body {
   --callout-color: 8, 109, 221 !important;
 }
 
-.callout[data-callout="stage"][data-callout-metadata*="limit"] > .callout-content > .callout {
+.callout[data-callout="stage"][data-callout-metadata*="limit-sm"] > .callout-content > .callout {
+  max-height: 200px;
+  overflow-y: auto;
+}
+
+.callout[data-callout="stage"][data-callout-metadata*="limit-md"] > .callout-content > .callout {
+  max-height: 350px;
+  overflow-y: auto;
+}
+
+.callout[data-callout="stage"][data-callout-metadata*="limit-lg"] > .callout-content > .callout {
   max-height: 500px;
   overflow-y: auto;
 }
