@@ -50,6 +50,11 @@ body {
   --embed-padding: 0 0 0 6px;
 }
 
+/* Hide title by alt */
+.markdown-embed[alt*="hide-title"] .markdown-embed-title {
+  display: none !important;
+}
+
 /*
   FILE-DIFF
 */
