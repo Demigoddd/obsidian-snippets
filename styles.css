@@ -12,11 +12,6 @@ settings:
   title: Line-numbers - Hide in mobile
   type: class-toggle
   default: true
--
-  id: file-diff-allow-text-selection
-  title: File-diff - allow text selection
-  type: class-toggle
-  default: true
 */
 
 /*
@@ -53,14 +48,6 @@ body {
 /* Hide title by alt */
 .markdown-embed[alt*="hide-title"] .markdown-embed-title {
   display: none !important;
-}
-
-/*
-  FILE-DIFF
-*/
-/* Allow text selection */
-.file-diff-allow-text-selection .file-diff__container {
-	user-select: text !important;
 }
 
 /*
