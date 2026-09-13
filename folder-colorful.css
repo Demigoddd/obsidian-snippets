@@ -729,22 +729,25 @@ body.file-name-wrapped .workspace-leaf-content[data-type='file-explorer'] .nav-f
   white-space: normal;
 }
 
-body.file-name-non-wrapped .workspace-leaf-content[data-type='file-explorer'] .nav-file-title-content,
-body.file-name-non-wrapped .workspace-leaf-content[data-type='file-explorer'] .nav-folder-title-content {
+body.file-name-non-wrapped .workspace-leaf-content[data-type='file-explorer'] .nav-file-title-content:not(.is-being-renamed, [contenteditable='true']),
+body.file-name-non-wrapped .workspace-leaf-content[data-type='file-explorer'] .nav-folder-title-content:not(.is-being-renamed, [contenteditable='true']) {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
 }
 
-.nav-folder-title-content.is-being-renamed,
-.nav-file-title-content.is-being-renamed {
+:is(.nav-folder-title-content, .nav-file-title-content):is(.is-being-renamed, [contenteditable='true']) {
   white-space: break-spaces;
-  overflow: visible;
   width: auto;
+  flex: 1 1 auto;
 }
 
-.nav-folder-title-content.is-being-renamed::before,
-.nav-file-title-content.is-being-renamed::before {
+.nav-folder-title:has(.is-being-renamed, [contenteditable='true']),
+.nav-file-title:has(.is-being-renamed, [contenteditable='true']) {
+  overflow: visible;
+}
+
+body .nav-files-container :is(.nav-folder-title-content, .nav-file-title-content):is(.is-being-renamed, [contenteditable='true'])::before {
   display: none;
 }
 
