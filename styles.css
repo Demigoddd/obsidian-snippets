@@ -43,6 +43,7 @@ body.is-mobile.hide-line-numbers-in-mobile .cm-gutters {
 /* Remove left line and padding  */
 body {
   --embed-padding: 0 0 0 6px;
+  --bases-table-group-gap: 0px;
 }
 
 /* Hide title by alt */
